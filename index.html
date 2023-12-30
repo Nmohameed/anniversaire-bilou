@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joyeux Anniversaire Bilou</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden; /* Empêche le défilement de la page pour conserver l'effet sur toute la page */
+        }
+
+        .container {
+            position: relative;
+            text-align: center;
+            width: 100vw; /* Prend toute la largeur de la fenêtre */
+            height: 100vh; /* Prend toute la hauteur de la fenêtre */
+            overflow: hidden; /* Cache tout contenu qui déborderait de la fenêtre */
+        }
+
+        .text-over-image {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 24px;
+            z-index: 1; /* Place le texte au-dessus de l'image */
+        }
+
+        img {
+            width: 100%;
+            display: block;
+        }
+
+        /* Animation d'étincelles */
+        .sparkle {
+            position: absolute;
+            background-color: #FFF;
+            width: 2px;
+            height: 2px;
+            animation: sparkleAnimation 1s infinite;
+            opacity: 0;
+            pointer-events: none; /* Évite que les étincelles soient cliquables */
+        }
+
+        @keyframes sparkleAnimation {
+            0% {
+                transform: translateY(0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-500px) scale(0);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="https://www.playstation.com/fr-fr/ps5/?smcid=pdc%3Afr-fr%3Aprimary%20nav%3Amsg-ps5%3Aconsole" target="_blank">
+            <img src="https://i.ibb.co/0j9fgNG/biloux.jpg" alt="Bilou">
+        </a>
+        <h1 class="text-over-image">JOYEUX ANNIVERSAIRE BILOU ♡</h1>
+
+        <!-- Éléments pour les étincelles -->
+        <div class="sparkle" style="top: 50%; left: 50%;"></div>
+        <!-- Ajoutez plus d'éléments div avec la classe "sparkle" pour plus d'étincelles -->
+    </div>
+
+    <script>
+        // JavaScript pour générer aléatoirement des étincelles
+        const container = document.querySelector('.container');
+
+        function createSparkle() {
+            const sparkle = document.createElement('div');
+            sparkle.classList.add('sparkle');
+
+            const size = Math.random() * 4; // Taille aléatoire entre 1px et 4px
+            sparkle.style.width = `${size}px`;
+            sparkle.style.height = `${size}px`;
+
+            const x = Math.random() * window.innerWidth;
+            const y = Math.random() * window.innerHeight;
+            sparkle.style.left = `${x}px`;
+            sparkle.style.top = `${y}px`;
+
+            container.appendChild(sparkle);
+
+            setTimeout(() => {
+                sparkle.remove();
+            }, 1000); // Supprime l'étincelle après 1 seconde
+        }
+
+        setInterval(createSparkle, 100); // Crée une étincelle toutes les 100 millisecondes
+    </script>
+</body>
+</html>
